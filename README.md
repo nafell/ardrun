@@ -1,7 +1,11 @@
-https://tech.144lab.com/entry/arduino-cli
-https://arduino.github.io/arduino-cli/0.21/commands/arduino-cli/
+# ardrun
+arduino-cli QoL script for Debian environments.
 
-## install
+Official Documentation:  https://arduino.github.io/arduino-cli/0.21/commands/arduino-cli/  
+Referenced: https://tech.144lab.com/entry/arduino-cli  
+
+## Setup
+### Installation
 ```bash
 mkdir ~/bin
 ```
@@ -9,30 +13,30 @@ mkdir ~/bin
 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=~/bin sh
 ```
 ```bash
- export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$PATH
 ```
 ```bash
 arduino-cli version
 ```
 
-## initialization
+### Initialization
 ```bash
 arduino-cli config init
 ```
 ```bash
 arduino-cli core update-index
 ```
-install board compiler/tools
+install board compiler/tools for arduino uno
 ```bash
 arduino-cli core install arduino:avr
 ```
 
-## libs
-### search
+### libs
+#### Search
 ```bash
 arduino-cli lib search --names U8x8
 ```
-
+#### Install
 1. grove oled (U8x8lib.h)
 ```bash
 arduino-cli lib install U8g2
@@ -42,7 +46,13 @@ arduino-cli lib install U8g2
 arduino-cli lib install "Grove Temperature And Humidity Sensor"
 ```
 
-## search board
+## Usage
+### Create new project
+```bash
+arduino-cli sketch new MyFirstSketch
+```
+
+### Search board
 ```bash
 arduino-cli board list
 ```
@@ -51,19 +61,18 @@ Port         Protocol Type              Board Name FQBN Core
 /dev/ttyS0   serial   Serial Port       Unknown
 /dev/ttyUSB0 serial   Serial Port (USB) Unknown <<< 正解
 
-
-## compile
+### Compile
 ```bash
 arduino-cli compile -b arduino:avr:uno
 ```
 
-## write
+### Upload/Write
 ```bash
 arduino-cli upload -b arduino:avr:uno -p /dev/ttyUSB0
 ```
 
 
-# 1 command compile & run bash script
+## One-command compile & upload bash script
 ```bash
 curl https://raw.githubusercontent.com/nafell/ardrun/main/ardrun -o ~/bin/ardrun
 ```
