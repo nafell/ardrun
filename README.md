@@ -56,10 +56,14 @@ arduino-cli sketch new MyFirstSketch
 ```bash
 arduino-cli board list
 ```
+result:
+```
 Port         Protocol Type              Board Name FQBN Core
 /dev/ttyAMA0 serial   Serial Port       Unknown
 /dev/ttyS0   serial   Serial Port       Unknown
 /dev/ttyUSB0 serial   Serial Port (USB) Unknown <<< 正解
+```
+Usually the device Port will be named `ttyUSB0`, `ttyUSB1`, etc.
 
 ### Compile
 ```bash
