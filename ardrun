@@ -1,0 +1,39 @@
+#!/bin/sh
+set -euo pipefail
+
+# cd to command execution directory
+WORKDIR=$(pwd)
+cd $WORKDIR
+
+### ===================
+### SETTINGS
+TARGET_BOARD=arduino:avr:uno
+TARGET_PORT=/dev/ttyUSB0
+
+echo "Compiling..."
+
+# stopwatch
+SCRIPT_START=`date +%s`
+
+# compile source code
+arduino-cli compile -b $TARGET_BOARD
+
+COMPILE_END=`date +%s`
+COMPILE_TIME=$((COMPILE_END-SCRIPT_START))
+echo "-------------------------------------"
+echo "Compile time: ${COMPILE_TIME} s"
+echo "====================================="
+echo "Uploading..."
+
+# upload(write) to board
+arduino-cli upload -b $TARGET_BOARD -p $TARGET_PORT \
+ || echo "*** ERROR OCCURRED while uploading!" && echo "** Target port might have changed. View list with" && echo "arduino-cli board list" && echo "** and edit TARGET_PORT with" && echo "nano ~/bin/ardrun"
+
+UPLOAD_END=`date +%s`
+UPLOAD_TIME=$((UPLOAD_END-COMPILE_END))
+
+echo "-------------------------------------"
+echo "Upload time: ${UPLOAD_TIME} s"
+echo "====================================="
+
+echo "Script concluded."
