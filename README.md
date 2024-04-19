@@ -65,7 +65,7 @@ arduino-cli upload -b arduino:avr:uno -p /dev/ttyUSB0
 
 # 1 command compile & run bash script
 ```bash
-curl https://github.com/nafell/ardrun/blob/main/ardrun -o ~/bin/ardrun
+curl https://raw.githubusercontent.com/nafell/ardrun/main/ardrun -o ~/bin/ardrun
 ```
 execution permission
 ```bash
